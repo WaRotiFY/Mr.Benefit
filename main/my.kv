@@ -1,0 +1,18 @@
+<Container>:
+    rows: 2
+    padding: 50
+    task: text_input
+
+    TextInput:
+        id: text_input
+        size_hint: 1, 0.1
+        multiline: False
+        font_size: 30
+    FloatLayout:
+        Button:
+            size_hint:1, 0.1
+            pos_hint:{'center_x': 0.5, 'y':0.85}
+            text:'Добавить задачу'
+
+            on_release:
+                root.add_task()
