@@ -20,4 +20,3 @@ class Achievement:
     def addAch(self, task):#добавить достижение в базу данных
         cur.execute("""INSERT INTO achievement VALUES(?,?);""", (task,0))
         conn.commit()
-
