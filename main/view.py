@@ -10,6 +10,8 @@ from kivy.uix.gridlayout import GridLayout
 from сlass import Achievement
 
 main=Achievement()
+class intro(GridLayout):
+   pass 
 class Container(GridLayout):
     def add_task(self):
         set=self.task.text
