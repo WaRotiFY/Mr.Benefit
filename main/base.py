@@ -10,6 +10,7 @@ cur.execute("""CREATE TABLE IF NOT EXISTS user(
 conn.commit()
 #Создаю базу данных с профилем пользователя
 cur.execute("""CREATE TABLE IF NOT EXISTS achievement(
+            id INTEGER,
             task TEXT,
             ismade INTEGER);
             """)
