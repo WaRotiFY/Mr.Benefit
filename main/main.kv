@@ -1,0 +1,56 @@
+#: import Window kivy.core.window.Window
+
+DribbleUI:
+<DribbleUI>:
+    MDBoxLayout:
+        orientation:'vertical'
+        MDScreen:
+            canvas.after:
+                Color:
+                    rgba:.2,.2,.2,.5-(root.animation_constant/100)
+                Ellipse:
+                    size:dp(180)*(0.8-(root.animation_constant/100)),dp(30)
+                    pos:self.pos[0]+(Window.width/2)-(dp(180)*(0.6-(root.animation_constant/100)))/2,self.pos[1]
+            RelativeLayout:
+                Image:
+                    source:'assets/icon.png'
+                    size_hint:None,None
+                    size:'200dp','200dp'
+                    pos_hint:{'center_x':.5,'center_y':.5+((root.animation_constant*2)/(Window.height))}
+        MDBoxLayout:
+            orientation:'vertical'
+            spacing:'12dp'
+            padding:'12dp'
+            MDLabel:
+                text:'Mr.Benefit'
+                halign:'center'
+                font_style:'H5'
+                bold:True
+            MDLabel:
+                text:'Найди мотивацию изучать новое'
+                halign:'center'
+                font_style:'Subtitle1'
+            MDFillRoundFlatButton:
+                text:'Sign Up'
+                pos_hint:{'center_x':.5,'center_y':.5}
+                size_hint_x:1
+            MDBoxLayout
+    
+<Container>:
+    rows: 2
+    padding: 50
+    task: text_input
+
+    TextInput:
+        id: text_input
+        size_hint: 1, 0.1
+        multiline: False
+        font_size: 30
+    FloatLayout:
+        Button:
+            size_hint:1, 0.1
+            pos_hint:{'centre_x': 0.5, 'y':0.85}
+            text:'ДОБАВИТЬ ЗАДАЧУ'
+
+            on_release:
+                root.add_task()
