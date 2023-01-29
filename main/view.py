@@ -2,36 +2,29 @@
 
 
 
-from kivy.app import App
+from kivy.animation import Animation
 from kivy.lang import Builder
-from kivy.uix.button import Button
-from kivy.uix.boxlayout import BoxLayout
-from kivy.uix.gridlayout import GridLayout
-
-from kivy.properties import ObjectProperty
-
-from Class import Achievement
+from kivy.properties import NumericProperty
+from kivymd.app import MDApp
+from kivymd.uix.screen import MDScreen
 
 
+class DribbleUI(MDScreen):
+    animation_constant = NumericProperty(40)
+
+    def __init__(self, **kw):
+        super().__init__(**kw)
+        anim = Animation(animation_constant=10, duration=.6, t='in_out_quad') + Animation(animation_constant=40,
+                                                                                          duration=.6, t='in_out_quad')
+        anim.repeat = True
+        anim.start(self)
 
 
-main=Achievement("Ildar")
-class intro(GridLayout):
-   
-   pass 
-class Container(GridLayout):
-    task = ObjectProperty
-    def add_task(self):
-        set=self.task.text
-        main.addAch(task=set)
+class App(MDApp):
 
-
-class MyApp(App):
     def build(self):
-        if(True):
-         return Container()
-        else:
-         return intro()
+        return Builder.load_file('main.kv')
+
 
 if __name__ == '__main__':
-    MyApp().run()
+    App().run()
