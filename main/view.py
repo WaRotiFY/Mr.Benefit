@@ -9,7 +9,7 @@ from kivymd.app import MDApp
 from kivymd.uix.screen import MDScreen
 
 
-class DribbleUI(MDScreen):
+class FirstUI(MDScreen):
     animation_constant = NumericProperty(40)
 
     def __init__(self, **kw):
