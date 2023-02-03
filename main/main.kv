@@ -1,7 +1,10 @@
 #: import Window kivy.core.window.Window
 
-FirstUI:
-<FirstUI>:
+WindowManage:
+    StartWindow:
+    SingIn:
+<StartWindow>:
+    name: 'startwindow'
     MDBoxLayout:
         orientation:'vertical'
         MDScreen:
@@ -34,9 +37,56 @@ FirstUI:
                 text:'Sign Up'
                 pos_hint:{'center_x':.5,'center_y':.5}
                 size_hint_x:1
+                md_bg_color: 64/255, 64/255, 191/255, 1
+                on_release:
+                    app.root.current='singin'
             MDBoxLayout
-    
-<Container>:
+
+<SingIn>:
+    nick: text_input
+    name: 'singin'
+    MDLabel:
+        text: 'Login'
+        font_size: '28sp'
+        pos_hint:{"center_x": .6, "center_y": .58}
+    MDFloatLayout:
+        size_hint: .79, .08
+        pos_hint:{"center_x": .5, "center_y": .42}
+        MDLabel:
+            text: 'Введите имя'
+            font_size: '28sp'
+            pos_hint:{"center_x": .5, "center_y": .9}
+        TextInput:
+            id: text_input
+            size_hint_y: .75
+            pos_hint:{"center_x": .49, "center_y": .4}
+            background_color:0, 0, 0, 0
+            cursor_color: 0,0,0,1
+            cursor_width: "2sp"
+            foreground_color: 120/255, 120/255, 120/255, 1
+            font_size:"17sp"
+        MDFloatLayout:
+            pos_hint:{"center_x": .5, "center_y": .0}
+            size_hint_y: .03
+            md_bg_color: 120/255, 120/255, 120/255, 1
+    Button:
+        text: "Войти"
+        background_color:0, 0, 0, 0
+        size_hint: .79, .08
+        pos_hint:{"center_x": .5, "center_y": .15}
+        canvas.before:
+            Color:
+                rgb: 64/255, 64/255, 191/255, 1
+            RoundedRectangle:
+                size: self.size
+                pos: self.pos
+                radius: [25]
+        on_release:
+            root.addNick()
+
+
+<g>:
+
     rows: 2
     padding: 50
     task: text_input
