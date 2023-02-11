@@ -1,6 +1,6 @@
 import sqlite3
 
-conn = sqlite3.connect("server.db")
+conn = sqlite3.connect("r.db")
 cur = conn.cursor()
 #Создаю базу данных с профилем пользователя
 cur.execute("""CREATE TABLE IF NOT EXISTS user(
@@ -15,3 +15,4 @@ cur.execute("""CREATE TABLE IF NOT EXISTS achievement(
             ismade INTEGER);
             """)
 conn.commit()
+conn.close()
