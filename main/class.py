@@ -33,7 +33,7 @@ class User:
         conn.commit()
     def getname(self):#получаю имя пользователя
         self.__init__(name=(self.name))
-        return self.name
+        return str(self.name)
 
 #класс для работы с достижениями
 class Achievement:
