@@ -1,8 +1,9 @@
 #: import Window kivy.core.window.Window
 
-WindowManage:
+Manager:
     StartWindow:
     SingIn:
+    MainMenu:
 <StartWindow>:
     name: 'startwindow'
     MDBoxLayout:
@@ -41,6 +42,7 @@ WindowManage:
                 on_release:
                     app.root.current='singin'
             MDBoxLayout
+
 
 <SingIn>:
     nick: text_input
@@ -83,7 +85,32 @@ WindowManage:
                 radius: [25]
         on_release:
             root.addNick()
+            app.root.current='menu'
 
+<MainMenu>:
+    name: "menu"
+    MDFloatLayout:
+        md_bg_color: rgba(246,250,255,255)
+        MDLabel:
+            text: "Hello,"
+            pos_hint:{"center_x": .56, "center_y": .93}
+            font_size: "15sp"
+            color: rgba(188,202,228,255)
+        MDLabel:
+            id: lb
+            text: "Bro"
+            pos_hint:{"center_x": .56, "center_y": .91}
+            font_size: "20sp"
+            color: rgba(71,92,119,255)
+        Button:
+            pos_hint:{"center_x": .83, "center_y": .91}
+            background_color: 1, 1, 1, 0
+            size_hint: None, None
+            Image:
+                id: my_image
+                source: "assets/5.jpg"
+                center_x: self.parent.center_x
+                center_y: self.parent.center_y
 
 <g>:
 
