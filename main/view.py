@@ -8,9 +8,32 @@ from kivy.properties import NumericProperty, ObjectProperty
 from kivy.uix.screenmanager import ScreenManager
 from kivymd.app import MDApp
 from kivymd.uix.screen import MDScreen
+import sqlite3
 from Class import User
 
 
+conn = sqlite3.connect("server.db")
+cur = conn.cursor()
+#Создаю базу данных с профилем пользователя
+cur.execute("""CREATE TABLE IF NOT EXISTS user(
+            name TEXT,
+            money INTEGER);
+            """)
+conn.commit()
+#Создаю базу данных с профилем пользователя
+cur.execute("""CREATE TABLE IF NOT EXISTS achievement(
+            id INTEGER,
+            task TEXT,
+            ismade INTEGER);
+            """)
+conn.commit()
+
+
+
+#вид приложения
+person=None
+class Manager(ScreenManager):
+    pass
 class StartWindow(MDScreen):
     animation_constant = NumericProperty(40)
 
@@ -22,17 +45,33 @@ class StartWindow(MDScreen):
         anim.start(self)
 
 class SingIn(MDScreen):
-
+    global person
     def addNick(self):
-        print(self.ids.text_input.text)
         person = User(self.ids.text_input.text)
+        self.manager.get_screen("menu").ids.lb.text=person.getname()
+"""class Update(MDScreen):
+    global person
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+        cur.execute("SELECT * FROM user")
+        prof=cur.fetchall()
+        if ( prof!= []):
+            person=User(prof[0][0])
+            self.manager.get_screen("menu").ids.lb.text=person.getname()
 
-class WindowManage(ScreenManager):
+        self.manager.current = 'menu'"""
+class MainMenu(MDScreen):
     pass
+
+
 class mainApp(MDApp):
 
     def build(self):
-        return Builder.load_file('main.kv')
+        cur.execute("SELECT * FROM user")
+        if (cur.fetchall() == []):
+            return Builder.load_file('main.kv')
+        else:
+            return MainMenu()
 
 
 if __name__ == '__main__':
